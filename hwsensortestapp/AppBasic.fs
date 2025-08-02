@@ -2,6 +2,7 @@
 
 open System
 open System.IO
+open System.Security.Principal
 
 open LibreHardwareMonitor
 open LibreHardwareMonitor.Hardware
@@ -11,10 +12,19 @@ open Ttelcl.HwAppLib
 open CommonTools
 open ColorPrint
 
-
-type private Options = unit
+type private Options = {
+  Update: bool
+}
 
 let private runApp o =
+  let isAdmin =
+    let identity = WindowsIdentity.GetCurrent()
+    let principal = new WindowsPrincipal(identity);
+    principal.IsInRole(WindowsBuiltInRole.Administrator)
+  if isAdmin then
+    cp "\fbRunning as admin\f0."
+  else
+    cp "\fyRunning as non-admin\f0. Some information may be missing."
   use wrapper =
     let computer = new Computer()
     computer.IsCpuEnabled <- true
@@ -27,10 +37,19 @@ let private runApp o =
   let computer = wrapper.Computer
   cp "Opening wrapper.Computer"
   computer.Open()
+  if o.Update then
+    cp "Running an update (\fg-update\f0)"
+    let visitor = new UpdateVisitor()
+    computer.Accept(visitor)
   cp "Requesting report"
   let report = computer.GetReport()
   let ts = DateTimeOffset.Now.ToString("yyyyMMdd-HHmmss-fff")
-  let reportfile = $"basic-report.{ts}.txt"
+  let tagStrings = [|
+    if o.Update then "update" else "noupdate"
+    if isAdmin then "admin" else "noadmin"
+    |]
+  let tag = String.Join("-", tagStrings)
+  let reportfile = $"basic-report.{tag}.{ts}.txt"
   cp $"Saving report as \fg{reportfile}\f0"
   File.WriteAllText(reportfile, report)
   cp "\fgDone\f0."
@@ -45,11 +64,17 @@ let run args =
     | "-h" :: _ ->
       None
     | [] ->
-      Some ()
+      Some o
+    | "-update" :: rest ->
+      rest |> parseMore {o with Update = true}
+    | "-noupdate" :: rest ->
+      rest |> parseMore {o with Update = false}
     | x :: _ ->
       cp $"\frUnrecognized argument:\fo {x}\f0."
       None
-  let oo = args |> parseMore ()
+  let oo = args |> parseMore {
+    Update = false
+  }
   match oo with
   | None ->
     Usage.usage "basic"
