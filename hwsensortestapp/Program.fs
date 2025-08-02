@@ -20,6 +20,8 @@ let rec run arglist =
     0  // program return status code to the operating system; 0 == "OK"
   | "basic" :: rest ->
     rest |> AppBasic.run
+  | "sensorcsv" :: rest ->
+    rest |> AppSensorCsv.run
   | x :: _ ->
     cp $"\foUnrecognized command\f0: \fy{x}\f0."
     1
