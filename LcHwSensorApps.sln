@@ -14,9 +14,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{02EA681E-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{6ACA2E9D-41C8-4596-9638-69404E3572D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ttelcl.HwAppLib", "Ttelcl.HwAppLib\Ttelcl.HwAppLib.csproj", "{EE147139-68C8-48D8-8201-1CA758E8A8BC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "hwsensortestapp", "hwsensortestapp\hwsensortestapp.fsproj", "{4462A430-2DCC-4F4E-B821-AF531D63972A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE147139-68C8-48D8-8201-1CA758E8A8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE147139-68C8-48D8-8201-1CA758E8A8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE147139-68C8-48D8-8201-1CA758E8A8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE147139-68C8-48D8-8201-1CA758E8A8BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4462A430-2DCC-4F4E-B821-AF531D63972A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4462A430-2DCC-4F4E-B821-AF531D63972A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4462A430-2DCC-4F4E-B821-AF531D63972A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4462A430-2DCC-4F4E-B821-AF531D63972A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE147139-68C8-48D8-8201-1CA758E8A8BC} = {6ACA2E9D-41C8-4596-9638-69404E3572D1}
+		{4462A430-2DCC-4F4E-B821-AF531D63972A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EF5AE14-40A5-486B-BD2E-B5C00B8A6D61}
