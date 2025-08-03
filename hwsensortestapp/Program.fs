@@ -22,6 +22,8 @@ let rec run arglist =
     rest |> AppBasic.run
   | "sensorcsv" :: rest ->
     rest |> AppSensorCsv.run
+  | "log" :: rest ->
+    rest |> AppLog.run
   | x :: _ ->
     cp $"\foUnrecognized command\f0: \fy{x}\f0."
     1

@@ -54,7 +54,7 @@ let private runApp o =
   computer.Accept(visitor)
   do
     use w = outputname |> startFile
-    w.WriteLine("id,hwkind,kind,value,min,max,name")
+    w.WriteLine("id,hwkind,kind,value,min,max,name,hwid,index")
     let rec writeHardwareSensors (hardware: IHardware) =
       cp $"Processing \fg{hardware.Identifier}\f0 (\fc{hardware.HardwareType}\f0)"
       for sensor in hardware.Sensors do
@@ -65,6 +65,8 @@ let private runApp o =
         let min = if sensor.Min.HasValue then sensor.Min.Value.ToString("G") else ""
         let max = if sensor.Max.HasValue then sensor.Max.Value.ToString("G") else ""
         let name = sensor.Name
+        let hwid = hardware.Identifier.ToString()
+        let index = sensor.Index
         let line =
           String.Join(',', [|
             id
@@ -74,6 +76,8 @@ let private runApp o =
             min
             max
             name
+            hwid
+            index.ToString()
             |])
         w.WriteLine(line)
         ()
