@@ -3,6 +3,7 @@
 open System
 open System.IO
 open System.Security.Principal
+open System.Threading
 
 open LibreHardwareMonitor
 open LibreHardwareMonitor.Hardware
@@ -84,10 +85,26 @@ let private runLog o =
           if s.Value.HasValue then // else "write an empty string" (i.e. do nothing)
             let txt = s.Value.Value.ToString("G", CultureInfo.InvariantCulture)
             w.Write(txt)
+        w.WriteLine()
       writeHeader()
       writeValues()
+      let interval = TimeSpan.FromMilliseconds(float(o.IntervalMillis))
+      let maxWait = TimeSpan.FromMilliseconds(250.0)
       let mutable stamp = DateTime.Now
-      cp "\frImplementation incomplete\f0 - no timer yet"
+      cp "Press \frCTRL-C\f0 to stop!"
+      while canceled() |> not do
+        let stampText = stamp.ToString("yyyy-MM-dd HH:mm:ss.fff")
+        cpx $"\r  \fg{stampText}\f0...         "
+        let nextStamp = stamp + interval
+        let now = DateTime.Now
+        let pending = nextStamp - now
+        if pending <= TimeSpan.Zero then
+          stamp <- nextStamp
+          writeValues()
+          // no waiting delay in this case
+        else
+          let delay = if pending < maxWait then pending else maxWait
+          Thread.Sleep(delay)
       ()
     outputname |> finishFile
 
