@@ -33,12 +33,15 @@ public class SensorMapVisitor: IVisitor
 
   void IVisitor.VisitComputer(IComputer computer)
   {
+    // Console.WriteLine($"[Visiting computer]");
     computer.Traverse(this);
   }
 
   void IVisitor.VisitHardware(IHardware hardware)
   {
+    // Console.WriteLine($"[Traversing hardware {hardware.Identifier}]");
     hardware.Traverse(this);
+    // Console.WriteLine($"[Visiting children of hardware {hardware.Identifier}]");
     foreach(var subHardware in hardware.SubHardware)
     {
       subHardware.Accept(this);
@@ -47,7 +50,8 @@ public class SensorMapVisitor: IVisitor
 
   void IVisitor.VisitSensor(ISensor sensor)
   {
-    SensorMap.Add(sensor.Identifier.ToString(), sensor);
+    // Console.WriteLine($"[Visiting sensor {sensor.Identifier}]");
+    SensorMap[sensor.Identifier.ToString()] = sensor;
   }
 
   void IVisitor.VisitParameter(IParameter parameter)
