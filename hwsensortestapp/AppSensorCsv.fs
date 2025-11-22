@@ -42,10 +42,10 @@ let private runApp o =
   use wrapper =
     let computer = new Computer()
     computer.IsCpuEnabled <- true
-    computer.IsGpuEnabled <- true
+    computer.IsGpuEnabled <- false
     computer.IsMotherboardEnabled <- true
     computer.IsControllerEnabled <- true
-    computer.IsPsuEnabled <- true
+    computer.IsPsuEnabled <- false
     new ComputerWrapper(computer, false)
   let computer = wrapper.Computer
   computer.Open()
@@ -54,7 +54,7 @@ let private runApp o =
   computer.Accept(visitor)
   do
     use w = outputname |> startFile
-    w.WriteLine("id,hwkind,kind,value,min,max,name,hwid,index")
+    w.WriteLine("id2,hwkind,kind,index,id,name,value,min,max,hwid")
     let rec writeHardwareSensors (hardware: IHardware) =
       cp $"Processing \fg{hardware.Identifier}\f0 (\fc{hardware.HardwareType}\f0)"
       for sensor in hardware.Sensors do
@@ -67,17 +67,19 @@ let private runApp o =
         let name = sensor.Name
         let hwid = hardware.Identifier.ToString()
         let index = sensor.Index
+        let id2 = $"/{hwkind}/{kind}/{index:D2}".ToLowerInvariant()
         let line =
           String.Join(',', [|
-            id
+            id2
             hwkind
             kind
+            index.ToString()
+            id
+            name
             value
             min
             max
-            name
             hwid
-            index.ToString()
             |])
         w.WriteLine(line)
         ()
