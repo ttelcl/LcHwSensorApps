@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36301.6 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11217.181 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ttelcl.HwAppLib", "Ttelcl.H
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "hwsensortestapp", "hwsensortestapp\hwsensortestapp.fsproj", "{4462A430-2DCC-4F4E-B821-AF531D63972A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TteLcl.IpcTools", "TteLcl.IpcTools\TteLcl.IpcTools.csproj", "{D729B10E-0EB3-4C2E-9B2A-F82D68C55619}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{4462A430-2DCC-4F4E-B821-AF531D63972A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4462A430-2DCC-4F4E-B821-AF531D63972A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4462A430-2DCC-4F4E-B821-AF531D63972A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D729B10E-0EB3-4C2E-9B2A-F82D68C55619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D729B10E-0EB3-4C2E-9B2A-F82D68C55619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D729B10E-0EB3-4C2E-9B2A-F82D68C55619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D729B10E-0EB3-4C2E-9B2A-F82D68C55619}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{EE147139-68C8-48D8-8201-1CA758E8A8BC} = {6ACA2E9D-41C8-4596-9638-69404E3572D1}
 		{4462A430-2DCC-4F4E-B821-AF531D63972A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D729B10E-0EB3-4C2E-9B2A-F82D68C55619} = {6ACA2E9D-41C8-4596-9638-69404E3572D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EF5AE14-40A5-486B-BD2E-B5C00B8A6D61}
