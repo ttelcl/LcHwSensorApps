@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-namespace Ttelcl.HwAppLib;
+namespace Ttelcl.HwAppLib.SensorLimitV1;
 
 /// <summary>
 /// Configuration for one sensor + limit + event name configuration

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 using LibreHardwareMonitor.Hardware;
 
-namespace Ttelcl.HwAppLib;
+namespace Ttelcl.HwAppLib.SensorLimitV1;
 
 /// <summary>
 /// Description of SensorLimit
