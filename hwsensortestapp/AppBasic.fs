@@ -32,6 +32,7 @@ let private runApp o =
     computer.IsMotherboardEnabled <- true
     computer.IsControllerEnabled <- true
     computer.IsPsuEnabled <- true
+    //computer.IsRing0Enabled <- true
     new ComputerWrapper(computer, false)
   cp "Wrapper created"
   let computer = wrapper.Computer
